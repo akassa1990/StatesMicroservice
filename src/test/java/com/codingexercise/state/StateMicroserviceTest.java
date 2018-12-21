@@ -26,7 +26,8 @@ public class StateMicroserviceTest {
 	public void testGetStatesByName() throws Exception {
 
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("http://localhost:8080/api/states/Michigan");
-		mockMvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(jsonPath("id", is(22)))
+		mockMvc.perform(requestBuilder).andExpect(status().isOk())
+									   .andExpect(jsonPath("id", is(22)))
 									   .andExpect(jsonPath("country", is("USA")))
 									   .andExpect(jsonPath("name", is("Michigan")))
 									   .andExpect(jsonPath("abbr", is("MI")))
@@ -39,14 +40,16 @@ public class StateMicroserviceTest {
 	public void testGetAlabamaAndGeorgia() throws Exception {
 
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("http://localhost:8080/api/states/ag");
-		mockMvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(jsonPath("states.size()", is(2)));
+		mockMvc.perform(requestBuilder).andExpect(status().isOk())
+									   .andExpect(jsonPath("states.size()", is(2)));
 	}
 
 	@Test
 	public void testGetAllStates() throws Exception {
 
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("http://localhost:8080/api/states");
-		mockMvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(jsonPath("states.size()", is(55)));
+		mockMvc.perform(requestBuilder).andExpect(status().isOk())
+									   .andExpect(jsonPath("states.size()", is(55)));
 	}
 
 }
