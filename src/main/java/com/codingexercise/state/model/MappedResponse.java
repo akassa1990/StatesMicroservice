@@ -1,32 +1,28 @@
 package com.codingexercise.state.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class MappedResponse {
 
-	@JsonProperty("RestResponse")
-	private RestResponse restResponse;
+  @JsonProperty("RestResponse")
+  private RestResponse restResponse;
 
-	public MappedResponse() {
-		super();
-	}
+  public MappedResponse() {
+    super();
+  }
 
-	public MappedResponse(RestResponse restResponse) {
-		super();
-		this.restResponse = restResponse;
-	}
+  public MappedResponse(RestResponse restResponse) {
+    super();
+    this.restResponse = restResponse;
+  }
 
-	public RestResponse getRestResponse() {
-		return restResponse;
-	}
+  @Override
+  public String toString() {
+    return "MappedResponse [restResponse=" + restResponse + "]";
+  }
 
-	public void setRestResponse(RestResponse restResponse) {
-		this.restResponse = restResponse;
-	}
-
-	@Override
-	public String toString() {
-		return "MappedResponse [restResponse=" + restResponse + "]";
-	}
-	
 }

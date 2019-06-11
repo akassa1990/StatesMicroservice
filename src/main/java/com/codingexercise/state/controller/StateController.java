@@ -1,5 +1,6 @@
 package com.codingexercise.state.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -7,14 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.codingexercise.annotation.StateApiResponse;
 import com.codingexercise.state.model.State;
 import com.codingexercise.state.model.States;
 import com.codingexercise.state.service.IStateService;
 import com.codingexercise.state.service.impl.StateServiceAnnotation;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class StateController {
@@ -29,7 +31,7 @@ public class StateController {
 	@ApiOperation(value = "Get Details of Alabama and Georgia")
 	@GetMapping(value = "/states/ag", produces = MediaType.APPLICATION_JSON_VALUE)
 	public States getSpecificStates() {
-		
+		log.info("Inside getSpecificStates() ...");
 		return this.stateService.getAlabamaAndGeorgia();
 	}
 	
@@ -70,7 +72,7 @@ public class StateController {
 	@StateApiResponse
 	@ApiOperation(value = "Get details of a state passed as a path variable")
 	@GetMapping(value = "/states/annotation/{stateName}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public State getStateAnnotation( @PathVariable("stateName") String stateName) {
+	public State getStateAnnotation(@PathVariable("stateName") String stateName) {
 	
 		return this.stateServiceAnnotation.getStatesByNameAnnotation(stateName);
 	}
